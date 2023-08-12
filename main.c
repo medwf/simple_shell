@@ -13,7 +13,7 @@ int main(void)
 	int status = 0;
 	ssize_t read;
 	size_t len = 0;
-	int num_token, fr;
+	int num_token;
 	pid_t chlid_pid = 0;
 
 	while (1)
@@ -33,16 +33,13 @@ int main(void)
 		stored[read - 1] = '\0';
 		/* start make array of stored an argumant */
 		num_token = 0;
-		fr = 0;
 		token = strtok(stored, delim);
 		while (token)
 		{
 			argv = realloc(argv, sizeof(char *) * (num_token + 2));
 			if (!argv)
 			{
-				while (argv[fr])
-					free(argv[fr++]);
-				free(argv);
+				free_arg(argv);
 				free(stored);
 				perror("realloc");
 				exit(1);
@@ -61,10 +58,7 @@ int main(void)
 				perror("execve");
 			wait(&status);
 		}
-		fr = 0;
-		while (argv[fr])
-			free(argv[fr++]);
-		free(argv);
+		free_arg(argv);
 		free(stored);
 	}
 	return (0);

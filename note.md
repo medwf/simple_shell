@@ -4,3 +4,4 @@
 # 2023/08/12
    1. `make display prompt and wait for user to type a command.handle all Task 1`
    2. `fix problem an allocate memory`
+   3. `create a function that free all argumment`.

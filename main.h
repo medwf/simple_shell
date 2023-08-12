@@ -9,5 +9,7 @@
 #include <stdlib.h> /* exit and free function */
 #include <string.h> /* strlen strtok function */
 #include <sys/stat.h>  /* stat function */
+/* Function */
+void free_arg(char **argv);
 
 #endif /* main.h */
