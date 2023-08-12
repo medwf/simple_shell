@@ -8,47 +8,28 @@
 
 int main(void)
 {
-	const char *promt = "#cisfun$ ", *delim = " ";
-	char *stored = NULL, **argv = NULL, *token;
+	const char *promt = "#cisfun$ ";
+	char *stored = NULL, **argv = NULL;
 	int status = 0;
 	ssize_t read;
 	size_t len = 0;
-	int num_token;
 	pid_t chlid_pid = 0;
 
 	while (1)
 	{
-		argv = malloc(sizeof(char *) * 2);
-		argv[0] = NULL;
-		argv[1] = NULL;
 		write(STDOUT_FILENO, promt, strlen(promt));
 		len = 0;
 		read = getline(&stored, &len, stdin);
 		if (read == -1)
 		{
-			free(argv);
+			if (argv)
+				free(argv);
 			free(stored);
 			exit(1);
 		}
 		stored[read - 1] = '\0';
 		/* start make array of stored an argumant */
-		num_token = 0;
-		token = strtok(stored, delim);
-		while (token)
-		{
-			argv = realloc(argv, sizeof(char *) * (num_token + 2));
-			if (!argv)
-			{
-				free_arg(argv);
-				free(stored);
-				perror("realloc");
-				exit(1);
-			}
-			argv[num_token] = realloc(argv[num_token], sizeof(char) * (strlen(token) + 1));
-			strcpy(argv[num_token++], token);
-			token = strtok(NULL, delim);
-		}
-		argv[num_token] = NULL;
+		argv = divide_arg(argv, stored);
 		if (access(argv[0], F_OK) == -1)
 			perror("access");
 		else

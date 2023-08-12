@@ -11,5 +11,6 @@
 #include <sys/stat.h>  /* stat function */
 /* Function */
 void free_arg(char **argv);
+char **divide_arg(char **av, char *std);
 
 #endif /* main.h */
