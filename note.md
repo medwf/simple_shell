@@ -1,2 +1,6 @@
-# 2023/12/10 we start.
+# 2023/08/09
+    - we start reading Resources.
+
+# 2023/08/12
    1. `make display prompt and wait for user to type a command.handle all Task 1`
+   2. `fix problem an allocate memory`
