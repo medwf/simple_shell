@@ -3,44 +3,46 @@
 /**
  * main - Entry points.
  * Description: create a UNIX command line interpreter.
+ * @argc: the number of argument.
+ * @argv: an array of argumment.
  * Return: 0 Always Success, otherwise return 1.
  */
 
-int main(void)
+int main(int __attribute__((unused)) argc, char **argv)
 {
-	const char *promt = "#cisfun$ ";
-	char *stored = NULL, **argv = NULL;
+	input in;
+	const char *prmt = "#cisfun$ ";
 	int status = 0;
 	ssize_t read;
 	size_t len = 0;
 	pid_t chlid_pid = 0;
 
+	in.stored = NULL;
+	in.array = NULL;
+	in.name_shell = argv[0];
+
 	while (1)
 	{
-		write(STDOUT_FILENO, promt, strlen(promt));
+		write(STDOUT_FILENO, prmt, strlen(prmt));
 		len = 0;
-		read = getline(&stored, &len, stdin);
+		read = getline(&in.stored, &len, stdin);
 		if (read == -1)
 		{
-			if (argv)
-				free(argv);
-			free(stored);
+			free(in.stored);
 			exit(1);
 		}
-		stored[read - 1] = '\0';
-		/* start make array of stored an argumant */
-		argv = divide_arg(argv, stored);
-		if (access(argv[0], F_OK) == -1)
-			perror("access");
+		divide_arg(&in);
+		if (access(in.array[0], F_OK) == -1)
+			perror(in.name_shell);
 		else
 		{
 			chlid_pid = fork();
-			if ((chlid_pid == 0) && (execve(argv[0], argv, NULL) == -1))
-				perror("execve");
+			if ((chlid_pid == 0) && (execve(in.array[0], in.array, NULL) == -1))
+				perror(in.name_shell);
 			wait(&status);
 		}
-		free_arg(argv);
-		free(stored);
+		free_array(&in);
+		free(in.stored);
 	}
 	return (0);
 }
