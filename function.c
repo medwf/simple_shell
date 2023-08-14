@@ -42,10 +42,10 @@ void divide_arg(input *ptr)
 			free_array(ptr);
 			free(ptr->stored);
 			perror(ptr->name_shell);
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		ptr->array[num_token] = realloc(ptr->array[num_token],
-		sizeof(char) * (strlen(token) + 1));
+				sizeof(char) * (strlen(token) + 1));
 		strcpy(ptr->array[num_token++], token);
 		token = strtok(NULL, " \n");
 	}
@@ -53,10 +53,29 @@ void divide_arg(input *ptr)
 }
 
 /**
-* handler - a function that handle with signal ctrl + c
-* @siganl: integer.
-*/
+ * handler - a function that handle with signal ctrl + c
+ * @signal : integer.
+ */
 void handler(int __attribute__((unused)) signal)
 {
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
+}
+/**
+ * dte_space - delete wait space from stored (input string)
+ *@str: pointers to stored.
+ */
+
+void dte_space(char *str)
+{
+	int i = 0, j = 0;
+
+	while ((*(str + i) == ' ' || *(str + i) == '\t') && *(str + i))
+		i++;
+	while (*(str + i) && *(str + j))
+	{
+		*(str + j) = *(str + i);
+		i++;
+		j++;
+	}
+	*(str + j) = '\0';
 }

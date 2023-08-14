@@ -18,4 +18,9 @@
 
 # 2023/08/14
 1. create a function that handle ctrl + c.
-   - and change initalization `in`.
+2. problem pass input argument and output status value:
+   - make function that delete space from beginning.
+   - change exit function.
+   - add if statement in main.c line 36: if stored don't do process.
+   - handle allocat memory.
+### we have problem betty more than 40 line in main.c ###

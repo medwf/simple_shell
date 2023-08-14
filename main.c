@@ -20,30 +20,34 @@ int main(int __attribute__((unused)) argc, char **argv)
 	in.stored = NULL;
 	in.array = NULL;
 	in.name_shell = argv[0];
-	/* handle ctrl + c */
 	signal(SIGINT, handler);
 	while (1)
 	{
-		write(STDOUT_FILENO, prmt, strlen(prmt));
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, prmt, strlen(prmt));
 		len = 0;
 		read = getline(&in.stored, &len, stdin);
 		if (read == -1)
 		{
 			free(in.stored);
-			exit(1);
-		}
-		divide_arg(&in);
-		if (access(in.array[0], F_OK) == -1)
-			perror(in.name_shell);
-		else
+			exit(EXIT_SUCCESS); }
+		in.stored[read - 1] = '\0';
+		dte_space(in.stored);
+		if (in.stored && in.stored[0])
 		{
-			chlid_pid = fork();
-			if ((chlid_pid == 0) && (execve(in.array[0], in.array, NULL) == -1))
+			divide_arg(&in);
+			if (access(in.array[0], F_OK) == -1)
 				perror(in.name_shell);
-			wait(&status);
+			else
+			{
+				chlid_pid = fork();
+				if ((chlid_pid == 0) && (execve(in.array[0], in.array, NULL) == -1))
+				{
+					perror(in.name_shell);
+					exit(EXIT_FAILURE); }
+				wait(&status);
+			}
+			free_array(&in);
 		}
-		free_array(&in);
-		free(in.stored);
-	}
-	return (0);
-}
+		free(in.stored); }
+	return (0); }

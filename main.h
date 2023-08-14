@@ -30,5 +30,7 @@ typedef struct input_argument
 void free_array(input *ptr);
 void divide_arg(input *ptr);
 void handler(int signal);
+void output_cmd(input *ptr);
+void dte_space(char *str);
 
 #endif /* main.h */
