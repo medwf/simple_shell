@@ -9,7 +9,7 @@
 #include <stdlib.h>  /* exit and free function */
 #include <string.h> /* strlen strtok function */
 #include <sys/stat.h>       /* stat function */
-
+#include <signal.h> /* for signal function */
 /* --- struct for data arg stored shell name --- */
 /**
  * struct input_argument  - define a stucture to hold data
@@ -29,5 +29,6 @@ typedef struct input_argument
 /* - in file function.c you will find -*/
 void free_array(input *ptr);
 void divide_arg(input *ptr);
+void handler(int signal);
 
 #endif /* main.h */

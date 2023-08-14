@@ -15,3 +15,7 @@
   - change file fron free_divide_arg.c to function.c to hold 5 function.
   - fix allocat memory.
   - programe handle space and flages.  
+
+# 2023/08/14
+1. create a function that handle ctrl + c.
+   - and change initalization `in`.

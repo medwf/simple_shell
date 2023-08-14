@@ -20,7 +20,8 @@ int main(int __attribute__((unused)) argc, char **argv)
 	in.stored = NULL;
 	in.array = NULL;
 	in.name_shell = argv[0];
-
+	/* handle ctrl + c */
+	signal(SIGINT, handler);
 	while (1)
 	{
 		write(STDOUT_FILENO, prmt, strlen(prmt));

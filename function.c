@@ -51,3 +51,12 @@ void divide_arg(input *ptr)
 	}
 	ptr->array[num_token] = NULL;
 }
+
+/**
+* handler - a function that handle with signal ctrl + c
+* @siganl: integer.
+*/
+void handler(int __attribute__((unused)) signal)
+{
+	exit(EXIT_SUCCESS);
+}
