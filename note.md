@@ -32,3 +32,4 @@
   - all alocat and EXIT is `GOOD`.
   - I'm trying to make inisatization for struct,try to make function that handle `PATH`. 
 2. make function that handle with fork and execve.
+3. i make function `init_stuct` that initialized struct.

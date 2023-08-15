@@ -13,9 +13,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	input in;
 	const char *prmt = "#cisfun$ ";
 
-	in.stored = NULL;
-	in.array = NULL;
-	in.name_shell = argv[0];
+	init_struct(&in, argv[0]);
 	signal(SIGINT, handler);
 	while (1)
 	{

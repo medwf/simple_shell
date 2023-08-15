@@ -46,3 +46,13 @@ void fork_exeve(input *ptr)
 	}
 	wait(&status);
 }
+/**
+ * init_struct - initialization of structures.
+ * @p: a pointer to structures.
+ */
+void init_struct(input *p, const char *name)
+{
+	p->stored = NULL;
+	p->array = NULL;
+	p->name_shell = name;
+}

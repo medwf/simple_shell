@@ -37,5 +37,6 @@ int _strlen(const char *s);
 int print(const char *str);
 void _getline(input *ptr);
 void fork_exeve(input *ptr);
+void init_struct(input *p, const char *name);
 
 #endif /* main.h */
