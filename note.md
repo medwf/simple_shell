@@ -1,5 +1,5 @@
 # 2023/08/09
-- we start reading Resources.
+  - we start reading Resources.
 
 # 2023/08/12
 1. make display prompt and wait for user to type a command.handle all Task 1
@@ -14,13 +14,20 @@
   - ptr is pointer to structure.
   - change file fron free_divide_arg.c to function.c to hold 5 function.
   - fix allocat memory.
-  - programe handle space and flages.  
+  - programe handle space and flages.
 
 # 2023/08/14
 1. create a function that handle ctrl + c.
 2. problem pass input argument and output status value:
-   - make function that delete space from beginning.
-   - change exit function.
-   - add if statement in main.c line 36: if stored don't do process.
-   - handle allocat memory.
-### we have problem betty more than 40 line in main.c ###
+  - make function that delete space from beginning.
+  - change exit function.
+  - add if statement in main.c line 36: if stored don't do process.
+  - handle allocat memory.
+  - `we have problem betty more than 40 line in main.c`
+
+# 2023/08/15
+1. solve problem betty:
+  - make _getine_ that take command from STDOUT-INPUT and delete wait space from begining.
+  - make finction that print constant char for promote. by using my own _strlrn_. :) :D.
+  - all alocat and EXIT is `GOOD`.
+  - I'm trying to make inisatization for struct,try to make function that handle `PATH`. 

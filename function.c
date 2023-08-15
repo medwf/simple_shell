@@ -79,3 +79,16 @@ void dte_space(char *str)
 	}
 	*(str + j) = '\0';
 }
+/**
+ * _strlen - returns the length of a string.
+ *@s: pointers to string.
+ * Return: to value of long string.
+ */
+int _strlen(const char *s)
+{
+	int i = 0;
+
+	while (*(s + i) != '\0')
+		i++;
+	return (i);
+}

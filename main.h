@@ -30,7 +30,11 @@ typedef struct input_argument
 void free_array(input *ptr);
 void divide_arg(input *ptr);
 void handler(int signal);
-void output_cmd(input *ptr);
 void dte_space(char *str);
+int _strlen(const char *s);
+
+/* - in file function_1.c you will find -*/
+int print(const char *str);
+void _getline(input *ptr);
 
 #endif /* main.h */

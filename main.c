@@ -13,8 +13,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 	input in;
 	const char *prmt = "#cisfun$ ";
 	int status = 0;
-	ssize_t read;
-	size_t len = 0;
 	pid_t chlid_pid = 0;
 
 	in.stored = NULL;
@@ -24,15 +22,8 @@ int main(int __attribute__((unused)) argc, char **argv)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, prmt, strlen(prmt));
-		len = 0;
-		read = getline(&in.stored, &len, stdin);
-		if (read == -1)
-		{
-			free(in.stored);
-			exit(EXIT_SUCCESS); }
-		in.stored[read - 1] = '\0';
-		dte_space(in.stored);
+			print(prmt);
+		_getline(&in);
 		if (in.stored && in.stored[0])
 		{
 			divide_arg(&in);
