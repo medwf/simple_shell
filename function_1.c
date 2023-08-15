@@ -33,7 +33,7 @@ void _getline(input *ptr)
  * fork_execve - a function that handle fork and execve
  * @ptr: a pointer to struct.
  */
-void fork_exeve(input *ptr)
+void fork_execve(input *ptr)
 {
 	pid_t ch_pid;
 	int status = 0;
@@ -49,6 +49,7 @@ void fork_exeve(input *ptr)
 /**
  * init_struct - initialization of structures.
  * @p: a pointer to structures.
+ * @name: a pointer to string argv[0].
  */
 void init_struct(input *p, const char *name)
 {

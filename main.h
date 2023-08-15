@@ -10,7 +10,7 @@
 #include <string.h> /* strlen strtok function */
 #include <sys/stat.h>       /* stat function */
 #include <signal.h> /* for signal function */
-/* --- struct for data arg stored shell name --- */
+/* --- Create structure --- */
 /**
  * struct input_argument  - define a stucture to hold data
  * @stored : a string to store user input.
@@ -31,12 +31,15 @@ void free_array(input *ptr);
 void divide_arg(input *ptr);
 void handler(int signal);
 void dte_space(char *str);
-int _strlen(const char *s);
-
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 /* - in file function_1.c you will find -*/
 int print(const char *str);
 void _getline(input *ptr);
-void fork_exeve(input *ptr);
+void fork_execve(input *ptr);
 void init_struct(input *p, const char *name);
+
+/* - in file handle_string.c you will find -*/
+int _strlen(const char *s);
+char *_strcpy(char *dest, char *src);
 
 #endif /* main.h */

@@ -26,7 +26,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			if (access(in.array[0], F_OK) == -1)
 				perror(in.name_shell);
 			else
-				fork_exeve(&in);
+				fork_execve(&in);
 			free_array(&in);
 		}
 		free(in.stored);

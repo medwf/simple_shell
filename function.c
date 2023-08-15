@@ -33,10 +33,15 @@ void divide_arg(input *ptr)
 	ptr->array[0] = NULL;
 	ptr->array[1] = NULL;
 
-	token = strtok(ptr->stored, " \n");
+	token = strtok(ptr->stored, " ");
 	while (token)
 	{
-		ptr->array = realloc(ptr->array, sizeof(char *) * (num_token + 2));
+		if (num_token == 0)
+			ptr->array = _realloc(ptr->array, sizeof(char *) * 2
+					, sizeof(char *) * (num_token + 2));
+		if (num_token)
+			ptr->array = _realloc(ptr->array, sizeof(char *) * ((num_token - 1) + 2)
+					, sizeof(char *) * (num_token + 2));
 		if (!ptr->array)
 		{
 			free_array(ptr);
@@ -44,10 +49,9 @@ void divide_arg(input *ptr)
 			perror(ptr->name_shell);
 			exit(EXIT_FAILURE);
 		}
-		ptr->array[num_token] = realloc(ptr->array[num_token],
-				sizeof(char) * (strlen(token) + 1));
-		strcpy(ptr->array[num_token++], token);
-		token = strtok(NULL, " \n");
+		ptr->array[num_token] = malloc(sizeof(char) * (_strlen(token) + 1));
+		_strcpy(ptr->array[num_token++], token);
+		token = strtok(NULL, " ");
 	}
 	ptr->array[num_token] = NULL;
 }
@@ -79,16 +83,43 @@ void dte_space(char *str)
 	}
 	*(str + j) = '\0';
 }
+#include <stdlib.h>
 /**
- * _strlen - returns the length of a string.
- *@s: pointers to string.
- * Return: to value of long string.
+ * _realloc - reallocates a memory block using malloc and free.
+ *@old_size: is the size, in bytes, of the allocated space for ptr.
+ *@new_size: is the new size, in bytes of the new memory block.
+ *@ptr:  is a pointer to the memory previously allocated.
+ *Return: NULL or pointer.
  */
-int _strlen(const char *s)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	int i = 0;
+	unsigned int i = 0;
+	char *ptr_new;
+	char *ptr_old;
 
-	while (*(s + i) != '\0')
-		i++;
-	return (i);
-}
+	if (ptr == NULL)
+	{
+		ptr = malloc(new_size);
+		return (ptr); }
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL); }
+	if (new_size == old_size)
+		return (ptr);
+
+	ptr_new = malloc(new_size);
+	if (ptr_new == NULL)
+		return (NULL);
+
+	ptr_old = ptr;
+	if (new_size < old_size)
+	{
+		for (i = 0 ; i < new_size ; i++)
+			ptr_new[i] = ptr_old[i]; }
+	if (new_size > old_size)
+	{
+		for (i = 0 ; i < old_size ; i++)
+			ptr_new[i] = ptr_old[i]; }
+	free(ptr);
+	return (ptr_new); }
