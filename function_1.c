@@ -29,3 +29,20 @@ void _getline(input *ptr)
 	ptr->stored[read - 1] = '\0';
 	dte_space(ptr->stored);
 }
+/**
+ * fork_execve - a function that handle fork and execve
+ * @ptr: a pointer to struct.
+ */
+void fork_exeve(input *ptr)
+{
+	pid_t ch_pid;
+	int status = 0;
+
+	ch_pid = fork();
+	if ((ch_pid == 0) && (execve(ptr->array[0], ptr->array, NULL) == -1))
+	{
+		perror(ptr->name_shell);
+		exit(EXIT_FAILURE);
+	}
+	wait(&status);
+}

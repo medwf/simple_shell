@@ -28,6 +28,7 @@
 # 2023/08/15
 1. solve problem betty:
   - make _getine_ that take command from STDOUT-INPUT and delete wait space from begining.
-  - make finction that print constant char for promote. by using my own _strlrn_. :) :D.
+  - make function that print constant char for promote. by using my own _strlen_. :) :D.
   - all alocat and EXIT is `GOOD`.
   - I'm trying to make inisatization for struct,try to make function that handle `PATH`. 
+2. make function that handle with fork and execve.

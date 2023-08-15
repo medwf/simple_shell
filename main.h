@@ -36,5 +36,6 @@ int _strlen(const char *s);
 /* - in file function_1.c you will find -*/
 int print(const char *str);
 void _getline(input *ptr);
+void fork_exeve(input *ptr);
 
 #endif /* main.h */
