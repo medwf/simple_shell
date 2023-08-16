@@ -35,11 +35,16 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 /* - in file function_1.c you will find -*/
 int print(const char *str);
 void _getline(input *ptr);
-void fork_execve(input *ptr);
+void fork_execve(input *ptr, size_t count);
 void init_struct(input *p, const char *name);
 
 /* - in file handle_string.c you will find -*/
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
+
+/* in file handle_err.c */
+void print_error(input *ptr, size_t count, char *err);
+void print_number(size_t n);
+void putchar_err(char c);
 
 #endif /* main.h */

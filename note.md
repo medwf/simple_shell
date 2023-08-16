@@ -34,3 +34,5 @@
 2. make function that handle with fork and execve.
 3. i make function `init_stuct` that initialized struct.
 4. replace all function that not allowed to our function. _strcpy ... _realloc __.
+# 2023/08/16
+1. make function that print error msg.
