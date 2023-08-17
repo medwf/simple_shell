@@ -57,3 +57,26 @@ void init_struct(input *p, const char *name)
 	p->array = NULL;
 	p->name_shell = name;
 }
+
+/**
+ *_getenv : get the value for any environment variable
+ *@name : the name of environment variable
+ *@env : environment variable
+ */
+char *_getenv(char *name, char **env)
+{
+	int i = 0;
+	size_t ptr;
+
+	if (name == NULL || env == NULL)
+		return (NULL);
+
+	ptr = _strlen(name);
+	while (env[i])
+	{
+		if (_strncmp(env[i], name, ptr) == 0 && env[i][ptr] == '=')
+			return (env[i] + ptr + 1);
+		i++;
+	}
+	return (NULL);
+}

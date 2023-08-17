@@ -5,13 +5,13 @@
  * Description: create a UNIX command line interpreter.
  * @argc: the number of argument.
  * @argv: an array of argumment.
+ * @env: an array of enviroment.
  * Return: 0 Always Success, otherwise return 1.
  */
 
-int main(int __attribute__((unused)) argc, char **argv)
+int main(int __attribute__((unused)) argc, char **argv, char **env)
 {
 	input in;
-	const char *prmt = "#cisfun$ ";
 	size_t count = 0;
 
 	init_struct(&in, argv[0]);
@@ -20,11 +20,12 @@ int main(int __attribute__((unused)) argc, char **argv)
 	{
 		count++;
 		if (isatty(STDIN_FILENO))
-			print(prmt);
+			print("#cisfun$ ");
 		_getline(&in);
 		if (in.stored && in.stored[0])
 		{
 			divide_arg(&in);
+			check_path(&in, env);
 			if (access(in.array[0], F_OK) == -1)
 				print_error(&in, count, "not found\n");
 			else

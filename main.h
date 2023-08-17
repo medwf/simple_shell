@@ -32,19 +32,26 @@ void divide_arg(input *ptr);
 void handler(int signal);
 void dte_space(char *str);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
 /* - in file function_1.c you will find -*/
 int print(const char *str);
 void _getline(input *ptr);
 void fork_execve(input *ptr, size_t count);
 void init_struct(input *p, const char *name);
+char *_getenv(char *name,  char **env);
 
 /* - in file handle_string.c you will find -*/
 int _strlen(const char *s);
 char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, char *src);
+char *_strdup(char *str);
+int _strncmp(char *s1, char *s2, int n);
 
 /* in file handle_err.c */
 void print_error(input *ptr, size_t count, char *err);
 void print_number(size_t n);
 void putchar_err(char c);
 
+/* in handle_path.c */
+void check_path(input *ptr, char **env);
 #endif /* main.h */
