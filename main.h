@@ -15,6 +15,7 @@
  * struct input_argument  - define a stucture to hold data
  * @stored : a string to store user input.
  * @array : an arrays of string to hold argument
+ * @_exit: last exit status.
  * @name_shell : a string that stored name of ececute file.
  */
 
@@ -23,6 +24,7 @@ typedef struct input_argument
 	char *stored;
 	char **array;
 	const char *name_shell;
+	int _exit;
 } input;
 
 /* --- Function --- */
@@ -47,6 +49,9 @@ char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 int _strncmp(char *s1, char *s2, int n);
 
+/* - in file handle_string.c you will find -*/
+int _strcmp(char *s1, char *s2);
+
 /* in file handle_err.c */
 void print_error(input *ptr, size_t count, char *err);
 void print_number(size_t n);
@@ -54,4 +59,8 @@ void putchar_err(char c);
 
 /* in handle_path.c */
 void check_path(input *ptr, char **env);
+
+/* handle_exit_env.c*/
+int handle_exit_env(input *ptr, char **env);
+
 #endif /* main.h */

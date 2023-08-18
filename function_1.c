@@ -24,7 +24,7 @@ void _getline(input *ptr)
 	if (read == -1)
 	{
 		free(ptr->stored);
-		exit(EXIT_SUCCESS);
+		exit(ptr->_exit);
 	}
 	ptr->stored[read - 1] = '\0';
 	dte_space(ptr->stored);
@@ -32,19 +32,30 @@ void _getline(input *ptr)
 /**
  * fork_execve - a function that handle fork and execve
  * @ptr: a pointer to struct.
+ * @count: the number of execute command.
  */
 void fork_execve(input *ptr, size_t count)
 {
-	pid_t ch_pid;
+	pid_t ch_pid, pr_pid;
 	int status = 0;
 
 	ch_pid = fork();
 	if ((ch_pid == 0) && (execve(ptr->array[0], ptr->array, NULL) == -1))
 	{
-		print_error(ptr, count, "Permission denied\n");
+		print_error(ptr, count, "execve\n");
 		exit(EXIT_FAILURE);
 	}
-	wait(&status);
+	else
+	{
+		pr_pid = waitpid(ch_pid, &status, 0);
+		if (pr_pid == -1)
+		{
+			print_error(ptr, count, "waitpid\n");
+			exit(EXIT_FAILURE);
+		}
+		if (WIFEXITED(status))
+			ptr->_exit = WEXITSTATUS(status);
+	}
 }
 /**
  * init_struct - initialization of structures.
@@ -56,26 +67,28 @@ void init_struct(input *p, const char *name)
 	p->stored = NULL;
 	p->array = NULL;
 	p->name_shell = name;
+	p->_exit = 0;
 }
 
 /**
- *_getenv : get the value for any environment variable
- *@name : the name of environment variable
- *@env : environment variable
+ * _getenv - get the value for any environment variable
+ * @name : the name of environment variable
+ * @env : environment variable
+ * Return: return an string of full path.
  */
 char *_getenv(char *name, char **env)
 {
 	int i = 0;
-	size_t ptr;
+	size_t len;
 
 	if (name == NULL || env == NULL)
 		return (NULL);
 
-	ptr = _strlen(name);
+	len = _strlen(name);
 	while (env[i])
 	{
-		if (_strncmp(env[i], name, ptr) == 0 && env[i][ptr] == '=')
-			return (env[i] + ptr + 1);
+		if (_strncmp(env[i], name, len) == 0 && env[i][len] == '=')
+			return (env[i] + len + 1);
 		i++;
 	}
 	return (NULL);

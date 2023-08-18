@@ -34,5 +34,13 @@
 2. make function that handle with fork and execve.
 3. i make function `init_stuct` that initialized struct.
 4. replace all function that not allowed to our function. _strcpy ... _realloc __.
+
 # 2023/08/16
 1. make function that print error msg.
+
+# 2023/08/18
+1. add an integer _exit to stracture __ for exit whith integer.
+2. exit status should be number 126 for not found and 127 if it permition denied.
+3. add exit command and print env.
+4. change function wait(); to waitpid(); to hande exit status...and to wait ch_pid.
+5. add strcmp to check env and exit...

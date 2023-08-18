@@ -22,14 +22,26 @@ int main(int __attribute__((unused)) argc, char **argv, char **env)
 		if (isatty(STDIN_FILENO))
 			print("#cisfun$ ");
 		_getline(&in);
+
 		if (in.stored && in.stored[0])
 		{
 			divide_arg(&in);
-			check_path(&in, env);
-			if (access(in.array[0], F_OK) == -1)
-				print_error(&in, count, "not found\n");
-			else
-				fork_execve(&in, count);
+			if (!handle_exit_env(&in, env))
+			{
+				check_path(&in, env);
+				if (access(in.array[0], F_OK) == -1)
+				{
+					print_error(&in, count, "not found\n");
+					in._exit = 127;
+				}
+				else if (access(in.array[0], X_OK) != 0)
+				{
+					print_error(&in, count, "Permission denied\n");
+					in._exit = 126;
+				}
+				else
+					fork_execve(&in, count);
+			}
 			free_array(&in);
 		}
 		free(in.stored);

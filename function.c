@@ -83,7 +83,6 @@ void dte_space(char *str)
 	}
 	*(str + j) = '\0';
 }
-#include <stdlib.h>
 /**
  * _realloc - reallocates a memory block using malloc and free.
  *@old_size: is the size, in bytes, of the allocated space for ptr.
