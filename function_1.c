@@ -18,7 +18,7 @@ int print(const char *str)
 void _getline(input *ptr)
 {
 	size_t len = 0;
-	ssize_t read;
+	ssize_t read = 0;
 
 	read = getline(&ptr->stored, &len, stdin);
 	if (read == -1)

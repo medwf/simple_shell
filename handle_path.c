@@ -13,6 +13,8 @@ void check_path(input *ptr, char **env)
 
 	if (ptr->array[0][0] != '/' && ptr->array[0][1] != '\0')
 	{
+		if (_strlen(_getenv("PATH", env)) == 0)
+			return;
 		paths = malloc(_strlen(_getenv("PATH", env))  + 1);
 		if (!paths)
 		{
@@ -27,11 +29,9 @@ void check_path(input *ptr, char **env)
 			{
 				len_file_path = _strlen(ptr->array[0]) + _strlen(one_path) + 2;
 				file_path = malloc(len_file_path);
-
 				_strcpy(file_path, one_path);
 				_strcat(file_path, "/");
 				_strcat(file_path, ptr->array[0]);
-
 				if (access(file_path, F_OK) == 0)
 				{
 					free(ptr->array[0]);

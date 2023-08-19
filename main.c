@@ -29,7 +29,8 @@ int main(int __attribute__((unused)) argc, char **argv, char **env)
 			if (!handle_exit_env(&in, env))
 			{
 				check_path(&in, env);
-				if (access(in.array[0], F_OK) == -1)
+				if (!((in.array[0][0] == '.' || in.array[0][0] == '/') &&
+					access(in.array[0], F_OK) == 0))
 				{
 					print_error(&in, count, "not found\n");
 					in._exit = 127;

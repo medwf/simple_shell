@@ -44,3 +44,9 @@
 3. add exit command and print env.
 4. change function wait(); to waitpid(); to hande exit status...and to wait ch_pid.
 5. add strcmp to check env and exit...
+
+# 2023/08/19
+1. fixed error : if path does not exist `segmentation fault`.
+2. specifier which command should be execute or not.
+3. fixed betty error: more than 40 line.
+4. fixed function _strlen __ if string == NULL return 0;
