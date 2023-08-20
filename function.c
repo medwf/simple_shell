@@ -34,7 +34,7 @@ void divide_arg(shell *ptr)
 	ptr->array[1] = NULL;
 
 	token = strtok(ptr->stored, " ");
-	while (token)
+	while (token && token[0] != '#')
 	{
 		if (num_token == 0)
 			ptr->array = _realloc(ptr->array, sizeof(char *) * 2,

@@ -28,6 +28,9 @@ void _getline(shell *ptr)
 	}
 	ptr->stored[read - 1] = '\0';
 	dte_space(ptr->stored);
+
+	if (ptr->stored[0] == '#')
+		ptr->stored[0] = '\0';
 }
 /**
  * fork_execve - a function that handle fork and execve
