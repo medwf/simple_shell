@@ -15,7 +15,7 @@ int print(const char *str)
  * _getline - a function that stored a command and delete space from beginning.
  * @ptr: a pointer to stored.
  */
-void _getline(input *ptr)
+void _getline(shell *ptr)
 {
 	size_t len = 0;
 	ssize_t read = 0;
@@ -32,9 +32,8 @@ void _getline(input *ptr)
 /**
  * fork_execve - a function that handle fork and execve
  * @ptr: a pointer to struct.
- * @count: the number of execute command.
  */
-void fork_execve(input *ptr, size_t count)
+void fork_execve(shell *ptr)
 {
 	pid_t ch_pid, pr_pid;
 	int status = 0;
@@ -42,7 +41,7 @@ void fork_execve(input *ptr, size_t count)
 	ch_pid = fork();
 	if ((ch_pid == 0) && (execve(ptr->array[0], ptr->array, NULL) == -1))
 	{
-		print_error(ptr, count, "execve\n");
+		print_error(ptr, "execve\n");
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -50,7 +49,7 @@ void fork_execve(input *ptr, size_t count)
 		pr_pid = waitpid(ch_pid, &status, 0);
 		if (pr_pid == -1)
 		{
-			print_error(ptr, count, "waitpid\n");
+			print_error(ptr, "waitpid\n");
 			exit(EXIT_FAILURE);
 		}
 		if (WIFEXITED(status))
@@ -61,12 +60,15 @@ void fork_execve(input *ptr, size_t count)
  * init_struct - initialization of structures.
  * @p: a pointer to structures.
  * @name: a pointer to string argv[0].
+ * @env: a double pointer to enviroment.
  */
-void init_struct(input *p, const char *name)
+void init_struct(shell *p, const char *name, char **env)
 {
 	p->stored = NULL;
 	p->array = NULL;
 	p->name_shell = name;
+	p->env = env;
+	p->count = 0;
 	p->_exit = 0;
 }
 

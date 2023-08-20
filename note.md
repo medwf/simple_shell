@@ -50,3 +50,9 @@
 2. specifier which command should be execute or not.
 3. fixed betty error: more than 40 line.
 4. fixed function _strlen __ if string == NULL return 0;
+
+# 2023/08/20
+1. rename and some change in structure add count and enviroment ... inisialisation count and env...
+2. delete pass parameters count and env ...
+3. i ckeck allocat and code it works `GOOD`.
+`i'm working on _getline function`

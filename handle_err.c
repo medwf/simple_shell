@@ -5,13 +5,12 @@
  *                      STDERR with counting for wich process.
  * @ptr: a pointer to structure.
  * @err: a pointer to string mdg err.
- * @count: number of process.
  */
-void print_error(input *ptr, size_t count, char *err)
+void print_error(shell *ptr, char *err)
 {
 	write(STDERR_FILENO, ptr->name_shell, _strlen(ptr->name_shell));
 	write(STDERR_FILENO, ": ", 2);
-	print_number(count);
+	print_number(ptr->count);
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, ptr->array[0], _strlen(ptr->array[0]));
 	write(STDERR_FILENO, ": ", 2);

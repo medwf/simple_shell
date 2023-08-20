@@ -11,41 +11,39 @@
 
 int main(int __attribute__((unused)) argc, char **argv, char **env)
 {
-	input in;
-	size_t count = 0;
+	shell sh;
 
-	init_struct(&in, argv[0]);
+	init_struct(&sh, argv[0], env);
 	signal(SIGINT, handler);
-	while (1)
+	while (++sh.count)
 	{
-		count++;
 		if (isatty(STDIN_FILENO))
 			print("#cisfun$ ");
-		_getline(&in);
+		_getline(&sh);
 
-		if (in.stored && in.stored[0])
+		if (_strlen(sh.stored))
 		{
-			divide_arg(&in);
-			if (!handle_exit_env(&in, env))
+			divide_arg(&sh);
+			if (!handle_exit_env(&sh))
 			{
-				check_path(&in, env);
-				if (!((in.array[0][0] == '.' || in.array[0][0] == '/') &&
-					access(in.array[0], F_OK) == 0))
+				check_path(&sh);
+				if (!((sh.array[0][0] == '.' || sh.array[0][0] == '/') &&
+					  access(sh.array[0], F_OK) == 0))
 				{
-					print_error(&in, count, "not found\n");
-					in._exit = 127;
+					print_error(&sh, "not found\n");
+					sh._exit = 127;
 				}
-				else if (access(in.array[0], X_OK) != 0)
+				else if (access(sh.array[0], X_OK) != 0)
 				{
-					print_error(&in, count, "Permission denied\n");
-					in._exit = 126;
+					print_error(&sh, "Permission denied\n");
+					sh._exit = 126;
 				}
 				else
-					fork_execve(&in, count);
+					fork_execve(&sh);
 			}
-			free_array(&in);
+			free_array(&sh);
 		}
-		free(in.stored);
+		free(sh.stored);
 	}
 	return (0);
 }

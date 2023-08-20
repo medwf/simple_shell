@@ -9,7 +9,7 @@ char *_strcpy(char *dest, char *src)
 {
 	int i;
 
-	for (i = 0 ; *(src + i) != '\0' ; i++)
+	for (i = 0; *(src + i) != '\0'; i++)
 	{
 		*(dest + i) = *(src + i);
 	}
@@ -79,7 +79,7 @@ char *_strcat(char *dest, char *src)
 	while (dest[c])
 		c++;
 
-	for (c2 = 0; src[c2] ; c2++)
+	for (c2 = 0; src[c2]; c2++)
 		dest[c++] = src[c2];
 	dest[c] = '\0';
 	return (dest);

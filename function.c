@@ -4,7 +4,7 @@
  * free_array - a function free argumment.
  * @ptr: a pointer to structure input
  */
-void free_array(input *ptr)
+void free_array(shell *ptr)
 {
 	int i = 0;
 
@@ -24,7 +24,7 @@ void free_array(input *ptr)
  * divide_arg - a function that divied a long sting to argument in av.
  * @ptr: a pointer to structure.
  */
-void divide_arg(input *ptr)
+void divide_arg(shell *ptr)
 {
 	int num_token = 0;
 	char *token;
@@ -37,11 +37,11 @@ void divide_arg(input *ptr)
 	while (token)
 	{
 		if (num_token == 0)
-			ptr->array = _realloc(ptr->array, sizeof(char *) * 2
-					, sizeof(char *) * (num_token + 2));
+			ptr->array = _realloc(ptr->array, sizeof(char *) * 2,
+					sizeof(char *) * (num_token + 2));
 		if (num_token)
-			ptr->array = _realloc(ptr->array, sizeof(char *) * ((num_token - 1) + 2)
-					, sizeof(char *) * (num_token + 2));
+			ptr->array = _realloc(ptr->array, sizeof(char *) * ((num_token - 1) + 2),
+					sizeof(char *) * (num_token + 2));
 		if (!ptr->array)
 		{
 			free_array(ptr);
@@ -99,11 +99,13 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (ptr == NULL)
 	{
 		ptr = malloc(new_size);
-		return (ptr); }
+		return (ptr);
+	}
 	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
-		return (NULL); }
+		return (NULL);
+	}
 	if (new_size == old_size)
 		return (ptr);
 
@@ -114,11 +116,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	ptr_old = ptr;
 	if (new_size < old_size)
 	{
-		for (i = 0 ; i < new_size ; i++)
-			ptr_new[i] = ptr_old[i]; }
+		for (i = 0; i < new_size; i++)
+			ptr_new[i] = ptr_old[i];
+	}
 	if (new_size > old_size)
 	{
-		for (i = 0 ; i < old_size ; i++)
-			ptr_new[i] = ptr_old[i]; }
+		for (i = 0; i < old_size; i++)
+			ptr_new[i] = ptr_old[i];
+	}
 	free(ptr);
-	return (ptr_new); }
+	return (ptr_new);
+}

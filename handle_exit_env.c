@@ -3,10 +3,9 @@
 /**
  * handle_exit_env - a function that exit shell and print env.
  * @ptr: a pointer to structure.
- * @env: a double pointer that points to string of enviroment.
  * Return: 1 if Success, otherwise 0.
  */
-int handle_exit_env(input *ptr, char **env)
+int handle_exit_env(shell *ptr)
 {
 	int i = 0;
 
@@ -19,9 +18,9 @@ int handle_exit_env(input *ptr, char **env)
 
 	if (!_strcmp(ptr->array[0], "env") && !ptr->array[1])
 	{
-		while (env[i])
+		while (ptr->env[i])
 		{
-			write(STDOUT_FILENO, env[i], _strlen(env[i]));
+			write(STDOUT_FILENO, ptr->env[i], _strlen(ptr->env[i]));
 			print("\n");
 			i++;
 		}

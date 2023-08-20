@@ -4,24 +4,23 @@
  * check_path - a function that check if command existe in all path
  *                           with given as command.
  * @ptr: a pointer to stracture.
- * @env: a pointer string that hold envirment.
  */
-void check_path(input *ptr, char **env)
+void check_path(shell *ptr)
 {
 	char *paths, *one_path, *file_path;
 	size_t len_file_path;
 
 	if (ptr->array[0][0] != '/' && ptr->array[0][1] != '\0')
 	{
-		if (_strlen(_getenv("PATH", env)) == 0)
+		if (_strlen(_getenv("PATH", ptr->env)) == 0)
 			return;
-		paths = malloc(_strlen(_getenv("PATH", env))  + 1);
+		paths = malloc(_strlen(_getenv("PATH", ptr->env)) + 1);
 		if (!paths)
 		{
 			free(paths);
 			return;
 		}
-		_strcpy(paths, _getenv("PATH", env));
+		_strcpy(paths, _getenv("PATH", ptr->env));
 		if (paths)
 		{
 			one_path = strtok(paths, ":");
