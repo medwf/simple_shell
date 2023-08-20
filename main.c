@@ -19,8 +19,7 @@ int main(int __attribute__((unused)) argc, char **argv, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 			print("#cisfun$ ");
-		_getline(&sh);
-
+		get_command(&sh);
 		if (_strlen(sh.stored))
 		{
 			divide_arg(&sh);

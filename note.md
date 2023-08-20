@@ -56,3 +56,4 @@
 2. delete pass parameters count and env ...
 3. i ckeck allocat and code it works `GOOD`.
 4. handle comments. start with `#` in beginnig of stored or beginning of argument.
+5. change name of function _getline to get_command to let us works in task _getline.

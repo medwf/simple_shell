@@ -41,7 +41,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /* - in file function_1.c you will find -*/
 int print(const char *str);
-void _getline(shell *ptr);
+void get_command(shell *ptr);
 void fork_execve(shell *ptr);
 void init_struct(shell *p, const char *name, char **env);
 char *_getenv(char *name, char **env);

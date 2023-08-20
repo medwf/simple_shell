@@ -15,7 +15,7 @@ int print(const char *str)
  * _getline - a function that stored a command and delete space from beginning.
  * @ptr: a pointer to stored.
  */
-void _getline(shell *ptr)
+void get_command(shell *ptr)
 {
 	size_t len = 0;
 	ssize_t read = 0;
