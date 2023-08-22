@@ -57,3 +57,6 @@
 3. i ckeck allocat and code it works `GOOD`.
 4. handle comments. start with `#` in beginnig of stored or beginning of argument.
 5. change name of function _getline to get_command to let us works in task _getline.
+
+# 2023/08/22
+1. handle with exit advanve make function _atoi but not handle with negative number.

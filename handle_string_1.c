@@ -34,3 +34,25 @@ int _strcmp(char *s1, char *s2)
 
 	return (r);
 }
+/**
+ *_atoi - a function that change string to integer number
+ *@str: a ppinter to string.
+ *Return: integer number or -1 if iy failed.
+ */
+int _atoi(char *str)
+{
+	int i = 0, ret_int_num = 0, helps = 0;
+
+	while (*(str + i))
+	{
+		/* check it char is not a number to return -1 in failed.*/
+		if (*(str + i) < '0' || *(str + i) > '9')
+			return (-1);
+		/* if it's number than change it fron char to integer*/
+		helps = *(str + i) - '0';
+		ret_int_num = ret_int_num * 10 + helps;
+		helps = 0;
+		i++;
+	}
+	return (ret_int_num);
+}

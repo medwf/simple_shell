@@ -55,6 +55,7 @@ int _strncmp(char *s1, char *s2, int n);
 
 /* - in file handle_string_1.c you will find -*/
 int _strcmp(char *s1, char *s2);
+int _atoi(char *str);
 
 /* in file handle_err.c */
 void print_error(shell *ptr, char *err);
