@@ -12,7 +12,8 @@ int print(const char *str)
 }
 
 /**
- * _getline - a function that stored a command and delete space from beginning.
+ * get_command - a function that stored a command
+ *                     and delete space from beginning.
  * @ptr: a pointer to stored.
  */
 void get_command(shell *ptr)
