@@ -25,8 +25,8 @@ int handle_exit_env(shell *ptr)
 		if (!_strcmp(ptr->array[0], "exit") && (_atoi(ptr->array[1]) == -1)
 			&& !ptr->array[2])
 		{
-			print_error(ptr, "Illegal number: "), write(STDERR_FILENO;
-			ptr->array[1], _strlen(ptr->array[1]));
+			print_error(ptr, "Illegal number: ");
+			write(STDERR_FILENO, ptr->array[1], _strlen(ptr->array[1]));
 			write(2, "\n", 1), ptr->_exit = 2;
 			return (1);
 		}
