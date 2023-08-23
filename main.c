@@ -28,9 +28,15 @@ int main(int __attribute__((unused)) argc, char **argv, char **env)
 				check_path(&sh);
 				if (!((sh.array[0][0] == '.' || sh.array[0][0] == '/') &&
 							access(sh.array[0], F_OK) == 0))
-					print_error(&sh, "not found\n"), sh._exit = 127;
+				{
+					print_error(&sh, "not found\n");
+					sh._exit = 127;
+				}
 				else if (access(sh.array[0], X_OK) != 0)
-					print_error(&sh, "permission denied\n"), sh._exit = 126;
+				{
+					print_error(&sh, "permission denied\n");
+					sh._exit = 126;
+				}
 				else
 					fork_execve(&sh);
 			}
