@@ -43,6 +43,11 @@ void fork_execve(shell *ptr)
 	int status = 0;
 
 	ch_pid = fork();
+	if (ch_pid == -1)
+	{
+		perror(ptr->name_shell);
+		exit(EXIT_FAILURE);
+	}
 	if ((ch_pid == 0) && (execve(ptr->array[0], ptr->array, NULL) == -1))
 	{
 		print_error(ptr, "execve\n");
