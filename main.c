@@ -38,5 +38,5 @@ int main(int __attribute__((unused)) argc, char **argv, char **env)
 		}
 		free(sh.stored);
 	}
-	return (0);
+	return (sh._exit);
 }

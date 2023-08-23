@@ -60,3 +60,7 @@
 
 # 2023/08/22
 1. handle with exit advanve make function _atoi but not handle with negative number.
+
+# 2023/08/23
+1. check code we have problem in betty and 2 error in task 3. 
+2. try to fix error.
